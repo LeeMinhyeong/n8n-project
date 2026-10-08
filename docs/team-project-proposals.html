@@ -154,27 +154,35 @@ section { scroll-margin-top: 4rem; }
 .block:first-of-type { border-top: 0; padding-top: 0; }
 .section-intro { color: var(--muted); }
 
-/* 한눈에 비교 카드 */
-.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-@media (max-width: 760px) { .cards { grid-template-columns: minmax(0, 1fr); } }
-.card {
+/* 한눈에 비교: 안별 행 */
+.plan-no { font-family: var(--font-mono); font-size: .8rem; font-weight: 600; color: var(--accent); letter-spacing: .06em; }
+.plans { display: grid; gap: .75rem; }
+.prow {
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: .6rem;
-  min-width: 0;
+  grid-template-columns: 13.5rem minmax(0, 1fr) 8rem;
+  gap: 1.25rem;
+  align-items: start;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 1.1rem 1.15rem 1rem;
+  padding: 1rem 1.15rem;
 }
-.card.is-rec { border-color: var(--accent); }
-.card-top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
-.plan-no { font-family: var(--font-mono); font-size: .8rem; font-weight: 600; color: var(--accent); letter-spacing: .06em; }
-.card h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.22rem; line-height: 1.35; }
-.card p { color: var(--muted); font-size: .93rem; }
-.card-foot { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; padding-top: .4rem; border-top: 1px solid var(--line); }
-.card-foot a { margin-left: auto; font-size: .88rem; font-weight: 600; text-decoration: none; }
-.card-foot a:hover { text-decoration: underline; }
+.prow.is-rec { border-color: var(--accent); }
+.prow-id { display: grid; gap: .3rem; min-width: 0; }
+.prow-tags { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; }
+.prow-id h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.18rem; line-height: 1.35; }
+.prow-main { display: grid; gap: .55rem; min-width: 0; }
+.prow-main p { font-size: .93rem; }
+.prow-meta { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: .1rem .75rem; margin: 0; font-size: .85rem; }
+.prow-meta dt { color: var(--muted); }
+.prow-meta dd { margin: 0; }
+.prow-side { display: grid; gap: .4rem; justify-items: start; align-content: start; }
+.prow-side a { font-size: .88rem; font-weight: 600; text-decoration: none; margin-top: .15rem; }
+.prow-side a:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .prow { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+  .prow-side { grid-auto-flow: column; justify-content: start; align-items: center; gap: .4rem .6rem; }
+}
 
 .pill {
   display: inline-block;
@@ -198,7 +206,6 @@ section { scroll-margin-top: 4rem; }
 .tbl tr:last-child th, .tbl tr:last-child td { border-bottom: 0; }
 .tbl thead th { font-size: .8rem; color: var(--muted); font-weight: 600; background: var(--bg); }
 .tbl tbody th { font-weight: 600; color: var(--muted); white-space: nowrap; width: 8.5rem; }
-.tbl .rec-col { background: var(--accent-soft); }
 
 /* 추천 */
 .verdict {
@@ -210,6 +217,7 @@ section { scroll-margin-top: 4rem; }
 }
 .verdict h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--accent); }
 .verdict ul { display: grid; gap: .2rem; }
+.verdict h4 { margin: .25rem 0 0; font-size: .95rem; }
 .verdict p { color: var(--fg); }
 
 /* 안별 상세 */
@@ -366,12 +374,12 @@ section { scroll-margin-top: 4rem; }
 
   <header class="doc-head">
     <p class="eyebrow">팀 프로젝트 기획안 · 데이터 트랙</p>
-    <h1>금융 데이터로 만드는 n8n 자동화 3안</h1>
-    <p class="lede">n8n 중심 Agent 교육(8시간 × 7회)을 마친 금융사 교육생 5명이 마지막 하루(8시간) 안에 완성할 수 있는 범위로 설계했습니다. 교육장에서는 회사 실데이터를 쓰기 어렵다고 보고, 세 안 모두 공공 Open API의 실데이터나 가상 데이터를 씁니다. 예시 주제들이 뉴스·규제·RAG·OCR처럼 텍스트 중심이라, 이 세 안은 숫자로 된 정형 데이터를 수집·가공·분석하는 쪽으로 차별화했습니다.</p>
+    <h1>금융 데이터로 만드는 n8n 자동화 5안</h1>
+    <p class="lede">n8n 중심 Agent 교육(8시간 × 7회)을 마친 금융사 교육생 5명이 마지막 하루(8시간) 안에 완성할 수 있는 범위로 설계했습니다. 교육장에서는 회사 실데이터를 쓰기 어렵다고 보고, 모든 안이 공공 Open API의 실데이터나 가상 데이터를 씁니다. 예시 주제들이 뉴스·규제·RAG·OCR처럼 텍스트 요약·검색 중심이라, 이 기획안들은 데이터를 수집·검증·분석하거나 텍스트를 정형 데이터로 바꾸는 쪽으로 차별화했습니다.</p>
     <dl class="meta">
       <div><dt>팀</dt><dd>금융사 교육생 5명</dd></div>
       <div><dt>기간</dt><dd>1일 · 8시간</dd></div>
-      <div><dt>주제</dt><dd>정형 데이터 수집·가공·분석</dd></div>
+      <div><dt>주제</dt><dd>데이터 수집·검증·분석</dd></div>
       <div><dt>작성일</dt><dd>2026-10-08</dd></div>
     </dl>
   </header>
@@ -382,6 +390,8 @@ section { scroll-margin-top: 4rem; }
       <a href="#plan1">안 1 금리 레이더</a>
       <a href="#plan2">안 2 재무 조기경보</a>
       <a href="#plan3">안 3 말로 묻는 분석가</a>
+      <a href="#plan4">안 4 보고 데이터 검문소</a>
+      <a href="#plan5">안 5 VOC 인사이트 보드</a>
       <a href="#ops">하루 운영</a>
       <a href="#prep">사전 준비</a>
       <a href="#sources">근거·출처</a>
@@ -392,53 +402,47 @@ section { scroll-margin-top: 4rem; }
   <section id="compare" class="block">
     <h2>한눈에 비교</h2>
 
-    <div class="cards">
-      <article class="card">
-        <div class="card-top"><span class="plan-no">안 1</span></div>
-        <h3>금리 레이더</h3>
-        <p>금감원 ‘금융상품한눈에’ 데이터를 주기적으로 쌓아 은행별 금리 순위와 신규·단종·금리 변경을 자동으로 리포트합니다.</p>
-        <div class="card-foot">
-          <span class="pill good">난이도 하~중</span>
-          <span class="pill good">리스크 낮음</span>
-          <a href="#plan1">자세히</a>
+    <div class="plans">
+      <article class="prow">
+        <div class="prow-id"><div class="prow-tags"><span class="plan-no">안 1</span></div><h3>금리 레이더</h3></div>
+        <div class="prow-main">
+          <p>금감원 ‘금융상품한눈에’ 데이터를 주기적으로 쌓아 은행별 금리 순위와 신규·단종·금리 변경을 리포트합니다.</p>
+          <dl class="prow-meta"><dt>데이터</dt><dd>공공 API 실데이터</dd><dt>핵심 역량</dt><dd>수집·평탄화·변경 감지</dd><dt>누가 쓰나</dt><dd>수신·여신 상품기획, 마케팅</dd><dt>시연</dt><dd>순위·차트가 직관적</dd></dl>
         </div>
+        <div class="prow-side"><span class="pill good">난이도 하~중</span><span class="pill good">리스크 낮음</span><a href="#plan1">자세히</a></div>
       </article>
-      <article class="card is-rec">
-        <div class="card-top"><span class="plan-no">안 2</span><span class="pill rec">추천</span></div>
-        <h3>거래기업 재무 조기경보</h3>
-        <p>DART 재무지표와 주요사항 공시로 관심 기업의 위험 신호를 규칙으로 계산하고, AI가 근거를 설명하는 주간 리포트를 만듭니다.</p>
-        <div class="card-foot">
-          <span class="pill warn">난이도 중</span>
-          <span class="pill warn">리스크 중간</span>
-          <a href="#plan2">자세히</a>
+      <article class="prow is-rec">
+        <div class="prow-id"><div class="prow-tags"><span class="plan-no">안 2</span><span class="pill rec">추천</span></div><h3>거래기업 재무 조기경보</h3></div>
+        <div class="prow-main">
+          <p>DART 재무지표와 주요사항 공시로 위험 신호를 규칙으로 계산하고, AI가 근거를 설명하는 주간 리포트를 만듭니다.</p>
+          <dl class="prow-meta"><dt>데이터</dt><dd>공공 API 실데이터</dd><dt>핵심 역량</dt><dd>지표 계산·규칙 탐지·AI 설명</dd><dt>누가 쓰나</dt><dd>여신심사·사후관리, 기업금융, 리스크관리</dd><dt>시연</dt><dd>금융 실무와 직결</dd></dl>
         </div>
+        <div class="prow-side"><span class="pill warn">난이도 중</span><span class="pill warn">리스크 중간</span><a href="#plan2">자세히</a></div>
       </article>
-      <article class="card">
-        <div class="card-top"><span class="plan-no">안 3</span></div>
-        <h3>말로 묻는 데이터 분석가</h3>
-        <p>현업이 채팅으로 질문하면 에이전트가 SQL을 만들어 실행하고 표·차트·해설로 답하는 셀프 분석 도구입니다.</p>
-        <div class="card-foot">
-          <span class="pill bad">난이도 중상</span>
-          <span class="pill bad">리스크 높음</span>
-          <a href="#plan3">자세히</a>
+      <article class="prow">
+        <div class="prow-id"><div class="prow-tags"><span class="plan-no">안 3</span></div><h3>말로 묻는 데이터 분석가</h3></div>
+        <div class="prow-main">
+          <p>채팅 질문을 SQL로 바꿔 실행하고 표·차트·해설로 답하는 셀프 분석 에이전트입니다.</p>
+          <dl class="prow-meta"><dt>데이터</dt><dd>가상 데이터 + DB</dd><dt>핵심 역량</dt><dd>모델링·SQL·에이전트·거버넌스</dd><dt>누가 쓰나</dt><dd>데이터·IT팀, 영업·마케팅 현업</dd><dt>시연</dt><dd>라이브 질의로 눈길을 끎</dd></dl>
         </div>
+        <div class="prow-side"><span class="pill bad">난이도 중상</span><span class="pill bad">리스크 높음</span><a href="#plan3">자세히</a></div>
       </article>
-    </div>
-
-    <div class="tbl-wrap">
-      <table class="tbl">
-        <thead>
-          <tr><th scope="col"></th><th scope="col">안 1 금리 레이더</th><th scope="col" class="rec-col">안 2 재무 조기경보</th><th scope="col">안 3 말로 묻는 분석가</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">누가 쓰나</th><td>수신·여신 상품기획, 마케팅</td><td class="rec-col">여신심사·사후관리, 기업금융, 리스크관리</td><td>데이터·IT팀, 영업·마케팅 현업</td></tr>
-          <tr><th scope="row">데이터</th><td>공공 API 실데이터</td><td class="rec-col">공공 API 실데이터</td><td>가상 데이터 + DB</td></tr>
-          <tr><th scope="row">핵심 데이터 역량</th><td>수집·평탄화·변경 감지</td><td class="rec-col">지표 계산·규칙 탐지·AI 설명</td><td>모델링·SQL·에이전트·거버넌스</td></tr>
-          <tr><th scope="row">난이도</th><td><span class="pill good">하~중</span></td><td class="rec-col"><span class="pill warn">중</span></td><td><span class="pill bad">중상</span></td></tr>
-          <tr><th scope="row">시연 임팩트</th><td>순위·차트가 직관적</td><td class="rec-col">금융 실무와 직결</td><td>라이브 질의로 눈길을 끎</td></tr>
-          <tr><th scope="row">실패 리스크</th><td><span class="pill good">낮음</span></td><td class="rec-col"><span class="pill warn">중간</span> 기업코드 매핑</td><td><span class="pill bad">높음</span> DB·SQL 오류</td></tr>
-        </tbody>
-      </table>
+      <article class="prow">
+        <div class="prow-id"><div class="prow-tags"><span class="plan-no">안 4</span><span class="pill plain">추가</span></div><h3>보고 데이터 검문소</h3></div>
+        <div class="prow-main">
+          <p>부서가 제출한 엑셀·CSV를 규칙으로 검증하고, 오류 리포트와 수정 안내를 제출 화면에서 바로 돌려줍니다.</p>
+          <dl class="prow-meta"><dt>데이터</dt><dd>가상 실적 파일 + 코드 마스터</dd><dt>핵심 역량</dt><dd>스키마·무결성 검증, 변동 탐지, 승인 흐름</dd><dt>누가 쓰나</dt><dd>보고·통계 집계 부서, 제출 부서·지점</dd><dt>시연</dt><dd>오류 파일을 올리면 즉시 리포트</dd></dl>
+        </div>
+        <div class="prow-side"><span class="pill good">난이도 하~중</span><span class="pill good">리스크 낮음</span><a href="#plan4">자세히</a></div>
+      </article>
+      <article class="prow">
+        <div class="prow-id"><div class="prow-tags"><span class="plan-no">안 5</span><span class="pill plain">추가</span></div><h3>VOC 인사이트 보드</h3></div>
+        <div class="prow-main">
+          <p>민원·VOC 텍스트를 AI로 분류·추출해 정형 데이터로 쌓고, 유형별 추이와 급증 신호를 리포트합니다.</p>
+          <dl class="prow-meta"><dt>데이터</dt><dd>가상 민원·VOC + 정답 라벨</dd><dt>핵심 역량</dt><dd>비정형→정형 변환, 분류 체계, 정확도 평가</dd><dt>누가 쓰나</dt><dd>금융소비자보호·민원, CS, 상품부서</dd><dt>시연</dt><dd>원문이 표·차트로 바뀌는 과정</dd></dl>
+        </div>
+        <div class="prow-side"><span class="pill warn">난이도 중</span><span class="pill good">리스크 낮음</span><a href="#plan5">자세히</a></div>
+      </article>
     </div>
 
     <div class="verdict">
@@ -449,7 +453,13 @@ section { scroll-margin-top: 4rem; }
         <li>계산(코드)과 해석(AI)이 나뉘어 있어서, 7일 동안 배운 노드를 고르게 쓰면서 “AI가 숫자를 지어내지 않는다”는 점을 설명하기 쉽습니다.</li>
         <li>기업 수만 줄이고 늘리면 범위를 쉽게 조절할 수 있습니다.</li>
       </ul>
-      <p>SQL에 익숙한 팀원이 있고 에이전트 역량을 보여주고 싶다면 안 3을, 확실히 완성하는 게 우선이라면 안 1을 고르세요.</p>
+      <h4>상황별로 고르기</h4>
+      <ul>
+        <li>교육 환경에서 외부 공공 API 접속이 막혀 있다면(망분리) 안 4나 안 5. 두 안은 LLM 접속만 있으면 됩니다.</li>
+        <li>확실히 완성하는 게 우선이라면 안 1이나 안 4.</li>
+        <li>SQL에 익숙한 팀원이 있고 에이전트 역량을 보여주고 싶다면 안 3.</li>
+        <li>소비자보호·CS 업무 경험자가 많다면 안 5.</li>
+      </ul>
     </div>
   </section>
 
@@ -710,6 +720,203 @@ section { scroll-margin-top: 4rem; }
     </div>
   </section>
 
+  <!-- 안 4 -->
+  <section id="plan4" class="block">
+    <div class="plan-head">
+      <span class="plan-no">안 4 · 추가</span>
+      <h2>보고 데이터 검문소</h2>
+      <p class="one-liner">부서가 제출한 엑셀·CSV를 규칙으로 검증하고 오류 리포트를 즉시 돌려주는 데이터 품질 게이트</p>
+    </div>
+
+    <dl class="facts">
+      <div><dt>누가 쓰나</dt><dd>보고·통계 집계 부서(경영기획, 리스크관리 등), 데이터를 제출하는 부서·지점</dd></div>
+      <div><dt>데이터</dt><dd>가상 ‘지점별 월간 여신 실적’ 파일, 코드 마스터, 전월 확정 데이터</dd></div>
+      <div><dt>난이도 · 리스크</dt><dd><span class="pill good">하~중</span> <span class="pill good">낮음</span></dd></div>
+    </dl>
+
+    <div class="sub">
+      <h3>다루는 데이터 역량</h3>
+      <div class="chips">
+        <span class="chip">스키마 검증</span><span class="chip">참조 무결성</span><span class="chip">범위·중복·합계 검증</span><span class="chip">전월 대비 변동 탐지</span><span class="chip">제출 이력 관리</span><span class="chip">사람 승인 흐름</span>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>데이터</h3>
+      <p>정상 파일과 오류를 일부러 심은 파일을 미리 만들어 둡니다. 지점·상품 코드 마스터와 전월 확정 데이터는 Data Table에 둡니다. 아래 컬럼은 예시입니다.</p>
+      <div class="spec-wrap">
+        <table class="spec">
+          <thead><tr><th>컬럼 (예시)</th><th>설명</th></tr></thead>
+          <tbody>
+            <tr><td><code>base_ym</code></td><td>기준월 (YYYYMM)</td></tr>
+            <tr><td><code>branch_cd</code></td><td>지점코드, 코드 마스터에 있어야 함</td></tr>
+            <tr><td><code>product_cd</code></td><td>상품코드, 코드 마스터에 있어야 함</td></tr>
+            <tr><td><code>balance</code></td><td>잔액 (원)</td></tr>
+            <tr><td><code>new_amount</code></td><td>신규 취급액 (원)</td></tr>
+            <tr><td><code>avg_rate</code></td><td>평균 금리 (%)</td></tr>
+            <tr><td><code>delinquency_rate</code></td><td>연체율 (%)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>검증 규칙</h3>
+      <div class="spec-wrap">
+        <table class="spec">
+          <thead><tr><th>규칙</th><th>예시</th><th>심각도</th></tr></thead>
+          <tbody>
+            <tr><td>형식</td><td>필수 컬럼 누락, 날짜·숫자 형식 오류</td><td><span class="pill bad">오류</span></td></tr>
+            <tr><td>코드값</td><td>지점·상품코드가 마스터에 없음</td><td><span class="pill bad">오류</span></td></tr>
+            <tr><td>범위</td><td>금리 0~20%, 연체율 0~100% 밖의 값, 음수 잔액</td><td><span class="pill bad">오류</span></td></tr>
+            <tr><td>중복</td><td>(기준월, 지점, 상품) 키 중복</td><td><span class="pill bad">오류</span></td></tr>
+            <tr><td>합계</td><td>지점별 합계와 총계 행이 다름</td><td><span class="pill bad">오류</span></td></tr>
+            <tr><td>변동</td><td>전월 대비 ±30% 이상 급변</td><td><span class="pill warn">경고</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">임계값은 예시이며 팀이 정합니다.</p>
+    </div>
+
+    <div class="sub">
+      <h3>워크플로우</h3>
+      <ol class="flow">
+        <li><div class="step-body"><div class="step-nodes"><span class="node">n8n Form</span></div><p class="step-desc">제출 부서, 기준월, 파일(File 필드) 입력</p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Extract From File</span></div><p class="step-desc">CSV·XLSX를 행 단위 항목으로 변환</p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Data Table</span></div><p class="step-desc">코드 마스터와 전월 확정 데이터 조회</p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Code</span></div><p class="step-desc">규칙 검사 → 오류 목록 <code>{행, 컬럼, 규칙, 값, 심각도}</code></p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Summarize</span><span class="node">AI Agent</span></div><p class="step-desc">규칙별·심각도별 건수를 집계하고, 오류 목록만 근거로 제출자용 수정 안내문 작성</p></div></li>
+        <li>
+          <div class="step-body">
+            <div class="step-nodes"><span class="node">Switch</span><span class="node">Form Ending</span></div>
+            <p class="step-desc">결과별로 분기하고 제출 화면에 바로 응답</p>
+            <ul class="branches">
+              <li><code>오류</code> Convert to File(XLSX) → Form Ending의 Return Binary File로 오류 리포트를 바로 내려받게 함</li>
+              <li><code>경고만</code> 승인 서브 워크플로우를 완료 대기 없이 실행하고, “담당자 확인 후 메일 안내” 화면 표시</li>
+              <li><code>통과</code> Data Table에 확정 데이터로 적재하고 제출 완료 화면 표시</li>
+            </ul>
+          </div>
+        </li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Execute Sub-workflow</span><span class="node">Slack</span><span class="node">Gmail</span></div><p class="step-desc">승인 서브 워크플로우: Slack Send and Wait for Response(Approval)로 담당자 승인 → 승인 시 적재, 결과를 제출자에게 메일로 회신</p></div></li>
+      </ol>
+    </div>
+
+    <div class="note info">
+      <strong>핵심 원칙</strong>
+      <p>통과·반려 판정은 Code 노드의 규칙이 하고, AI는 오류 목록을 읽기 쉬운 안내문으로 바꾸는 일만 합니다. 외부 공공 API가 필요 없어서 망분리 환경에서도 진행하기 쉽습니다. LLM 접속은 필요합니다.</p>
+    </div>
+
+    <div class="sub">
+      <h3>5인 역할</h3>
+      <dl class="roles">
+        <div><dt>양식·데이터</dt><dd>데이터 명세서, 정상·오류 테스트 파일</dd></div>
+        <div><dt>규칙 엔진</dt><dd>Code 노드 검증 로직</dd></div>
+        <div><dt>마스터·이력</dt><dd>Data Table 코드 마스터, 전월 데이터, 제출 이력</dd></div>
+        <div><dt>AI·리포트</dt><dd>수정 안내문, 오류 리포트 파일</dd></div>
+        <div><dt>승인·발표</dt><dd>Slack 승인 흐름, 발표</dd></div>
+      </dl>
+    </div>
+
+    <div class="steps2">
+      <div><h4>MVP</h4><p>형식·코드값·범위·중복 규칙 4종과 오류 리포트 반환</p></div>
+      <div><h4>확장</h4><p>합계·전월 변동 규칙, 경고 승인 흐름, 제출 현황 대시보드</p></div>
+    </div>
+
+    <div class="note warn">
+      <strong>주의</strong>
+      <p>당일 첫 30분 안에 데이터 명세서(컬럼·타입·허용값)를 확정해야 규칙을 나눠 만들 수 있습니다. Slack 안에서 버튼 한 번으로 승인하려면 n8n이 Slack에서 공용 HTTPS로 접속 가능해야 합니다. 교육 환경이 그렇지 않으면 기본 방식(링크를 눌러 n8n 페이지에서 승인)을 쓰세요.</p>
+    </div>
+  </section>
+
+  <!-- 안 5 -->
+  <section id="plan5" class="block">
+    <div class="plan-head">
+      <span class="plan-no">안 5 · 추가</span>
+      <h2>VOC 인사이트 보드</h2>
+      <p class="one-liner">민원·VOC 텍스트를 정형 데이터로 바꿔 유형별 추이와 급증 신호를 잡는 리포트</p>
+    </div>
+
+    <dl class="facts">
+      <div><dt>누가 쓰나</dt><dd>금융소비자보호·민원 담당, CS, 상품부서</dd></div>
+      <div><dt>데이터</dt><dd>가상 민원·VOC 200~300건과 정답 라벨</dd></div>
+      <div><dt>난이도 · 리스크</dt><dd><span class="pill warn">중</span> <span class="pill good">낮음</span></dd></div>
+    </dl>
+
+    <div class="sub">
+      <h3>다루는 데이터 역량</h3>
+      <div class="chips">
+        <span class="chip">비정형 → 정형 변환</span><span class="chip">분류 체계 설계</span><span class="chip">추출 스키마 설계</span><span class="chip">정확도 평가</span><span class="chip">시계열 집계·급증 감지</span>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>데이터</h3>
+      <p>LLM으로 가상 민원·VOC를 만들 때 정답 라벨(유형·긴급도)을 함께 저장합니다. 이 라벨이 나중에 분류 정확도를 재는 평가셋이 됩니다. 실제 고객 민원은 쓰지 않습니다. 아래 필드는 예시입니다.</p>
+      <div class="spec-wrap">
+        <table class="spec">
+          <thead><tr><th>필드 (예시)</th><th>설명</th></tr></thead>
+          <tbody>
+            <tr><td><code>received_at</code></td><td>접수일</td></tr>
+            <tr><td><code>channel</code></td><td>콜센터 · 앱 · 영업점 · 외부기관 이첩</td></tr>
+            <tr><td><code>product</code></td><td>관련 상품</td></tr>
+            <tr><td><code>body</code></td><td>민원 본문</td></tr>
+            <tr><td><code>label_type</code>, <code>label_urgency</code></td><td>정답 라벨 (평가용)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>분류 체계 예시입니다. 최종 유형과 설명은 팀이 정합니다.</p>
+      <div class="chips">
+        <span class="chip">금리·수수료</span><span class="chip">불완전판매·설명 부족</span><span class="chip">대출 심사·한도</span><span class="chip">채권추심</span><span class="chip">전산·앱 장애</span><span class="chip">직원 응대</span><span class="chip">개인정보</span><span class="chip">기타</span>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>워크플로우</h3>
+      <ol class="flow">
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Schedule Trigger</span><span class="node">Google Sheets</span></div><p class="step-desc">신규 VOC를 배치로 읽기 <span class="muted">· 시연 때는 n8n Form으로 1건씩 입력해도 됨</span></p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Guardrails</span></div><p class="step-desc">Sanitize Text로 전화번호·카드번호 같은 PII를 자리표시자로 바꾸고, Custom Regex로 주민번호·계좌번호 추가 <span class="muted">· LLM 호출 전에 실행</span></p></div></li>
+        <li>
+          <div class="step-body">
+            <div class="step-nodes"><span class="node">Text Classifier</span></div>
+            <p class="step-desc">유형 분류</p>
+            <ul class="branches"><li><code>Other</code> 분류되지 않은 건은 사람 검토 목록으로</li></ul>
+          </div>
+        </li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Information Extractor</span></div><p class="step-desc"><code>{상품명, 고객 요구사항, 관련 금액, 긴급도}</code> 추출</p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Sentiment Analysis</span></div><p class="step-desc">불만 강도 분류 <span class="muted">· 범주는 팀이 정의</span></p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Data Table</span></div><p class="step-desc">정형화된 VOC 적재</p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">Summarize</span><span class="node">Code</span><span class="node">QuickChart</span></div><p class="step-desc">유형·채널별 주간 집계, 전주 대비 급증 감지, 추이 차트</p></div></li>
+        <li><div class="step-body"><div class="step-nodes"><span class="node">AI Agent</span><span class="node">Slack</span><span class="node">Gmail</span></div><p class="step-desc">주간 인사이트 리포트 발송, 긴급 건은 즉시 알림</p></div></li>
+      </ol>
+    </div>
+
+    <div class="note info">
+      <strong>정확도 평가</strong>
+      <p>Evaluation Trigger로 정답 라벨이 달린 평가셋을 한 행씩 돌리고, 정답 일치 여부를 Evaluation 노드(Set Metrics)로 기록해 Evaluations 탭에서 봅니다. 카테고리 설명을 고칠 때마다 정확도가 어떻게 바뀌는지 숫자로 보여줄 수 있어 발표 포인트가 됩니다.</p>
+    </div>
+
+    <div class="sub">
+      <h3>5인 역할</h3>
+      <dl class="roles">
+        <div><dt>분류 체계</dt><dd>유형 정의, 정답 라벨 기준 (소비자보호 경험자)</dd></div>
+        <div><dt>데이터</dt><dd>가상 VOC 생성, 수집 흐름</dd></div>
+        <div><dt>AI 노드</dt><dd>분류·추출·감정 노드 설정</dd></div>
+        <div><dt>집계·알림</dt><dd>집계, 급증 감지, 차트, 알림</dd></div>
+        <div><dt>평가·발표</dt><dd>정확도 평가, 리포트, 발표</dd></div>
+      </dl>
+    </div>
+
+    <div class="steps2">
+      <div><h4>MVP</h4><p>100건 유형 분류, 정확도 측정, 유형별 집계</p></div>
+      <div><h4>확장</h4><p>추출·감정 분석 추가, 급증 알림, 답변 초안 생성</p></div>
+    </div>
+
+    <div class="note warn">
+      <strong>주의</strong>
+      <p>Text Classifier의 When No Clear Match 기본값은 항목을 버리는 것(Discard Item)입니다. 그대로 두면 민원이 조용히 빠지니 ‘Other’ 분기로 바꾸세요. 감정 분석 노드 문서는 연결한 모델의 temperature를 0에 가깝게 두라고 권장합니다. 분류 노드에도 같은 설정을 쓰면 결과가 덜 흔들립니다.</p>
+    </div>
+  </section>
+
   <!-- 하루 운영 -->
   <section id="ops" class="block">
     <h2>하루 운영 (8시간)</h2>
@@ -767,7 +974,7 @@ section { scroll-margin-top: 4rem; }
   <section id="prep" class="block">
     <div class="check-head">
       <h2>사전 준비 (전날까지)</h2>
-      <span class="check-count" id="prep-count">0 / 6 완료</span>
+      <span class="check-count" id="prep-count">0 / 8 완료</span>
     </div>
     <ul class="checklist">
       <li><label for="prep-keys"><input type="checkbox" id="prep-keys"><span><span class="t">인증키 발급과 실제 호출 테스트</span><span class="d">금융상품한눈에 · OpenDART · ECOS 중 선택한 안에 필요한 것만</span></span></label></li>
@@ -776,6 +983,8 @@ section { scroll-margin-top: 4rem; }
       <li><label for="prep-creds"><input type="checkbox" id="prep-creds"><span><span class="t">LLM API 키와 Slack · Gmail · Google Sheets 자격증명</span></span></label></li>
       <li><label for="prep-corp"><input type="checkbox" id="prep-corp"><span><span class="t">(안 2) 관심기업 <code>corp_code</code> 매핑표</span></span></label></li>
       <li><label for="prep-db"><input type="checkbox" id="prep-db"><span><span class="t">(안 3) Postgres, 읽기 전용 계정, 가상 데이터 적재</span></span></label></li>
+      <li><label for="prep-spec"><input type="checkbox" id="prep-spec"><span><span class="t">(안 4) 데이터 명세서와 오류를 심은 테스트 파일</span><span class="d">규칙마다 오류 파일을 1개 이상</span></span></label></li>
+      <li><label for="prep-voc"><input type="checkbox" id="prep-voc"><span><span class="t">(안 5) 분류 체계와 정답 라벨이 달린 가상 VOC</span></span></label></li>
     </ul>
     <p class="fine">체크 상태는 이 브라우저에만 저장됩니다.</p>
   </section>
@@ -808,6 +1017,12 @@ section { scroll-margin-top: 4rem; }
           <li><a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/sql-agent" target="_blank" rel="noopener">SQL AI Agent (deprecated)</a></li>
           <li><a href="https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.postgres/" target="_blank" rel="noopener">Postgres</a></li>
           <li><a href="https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.quickchart/" target="_blank" rel="noopener">QuickChart</a></li>
+          <li><a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.form" target="_blank" rel="noopener">n8n Form (Form Ending)</a> · <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger" target="_blank" rel="noopener">Form Trigger</a></li>
+          <li><a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.extractfromfile" target="_blank" rel="noopener">Extract From File</a> · <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.converttofile" target="_blank" rel="noopener">Convert to File</a></li>
+          <li><a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow" target="_blank" rel="noopener">Execute Sub-workflow</a></li>
+          <li><a href="https://github.com/n8n-io/n8n-docs/blob/main/docs/integrations/builtin/app-nodes/n8n-nodes-base.slack/approvals.md" target="_blank" rel="noopener">Slack 승인 (Approvals, 문서 원본)</a></li>
+          <li><a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.text-classifier" target="_blank" rel="noopener">Text Classifier</a> · <a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.information-extractor" target="_blank" rel="noopener">Information Extractor</a> · <a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.sentimentanalysis" target="_blank" rel="noopener">Sentiment Analysis</a></li>
+          <li><a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.evaluation" target="_blank" rel="noopener">Evaluation</a></li>
         </ul>
       </div>
       <div>
